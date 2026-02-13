@@ -18,6 +18,11 @@ export function ContactSection({ content }: ContactSectionProps) {
 
         <div className="mt-7 grid gap-4 sm:grid-cols-2">
           <article className="rounded-2xl border border-white bg-white p-4">
+            <p className="text-xs font-medium text-slate-500">{content.contactPersonLabel}</p>
+            <p className="mt-2 text-sm font-semibold text-slate-800">{content.contactPerson}</p>
+          </article>
+
+          <article className="rounded-2xl border border-white bg-white p-4">
             <p className="text-xs font-medium text-slate-500">{content.phoneLabel}</p>
             <a href={buildPhoneHref(content.phone)} className="mt-2 inline-block text-lg font-semibold text-[var(--brand-primary)]">
               {content.phone}

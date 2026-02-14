@@ -6,11 +6,11 @@
 @import "@fontsource/space-grotesk/700.css";
 
 :root {
-  --brand-primary: #0b3d91;
-  --brand-accent: #11a9e2;
-  --ink-primary: #0f172a;
-  --surface-soft: #f4f8fc;
-  --surface-page: #edf4ff;
+  --brand-primary: #1a4ca5;
+  --brand-accent: #29d8ff;
+  --ink-primary: #eff7ff;
+  --surface-soft: #112447;
+  --surface-page: #050d1c;
   --font-body: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   --font-accent: "Space Grotesk", "Noto Sans SC", sans-serif;
 }
@@ -37,9 +37,22 @@ body {
   color: var(--ink-primary);
   font-family: var(--font-body);
   background:
-    radial-gradient(circle at 18% 14%, rgba(17, 169, 226, 0.19), transparent 28%),
-    radial-gradient(circle at 82% 4%, rgba(11, 61, 145, 0.2), transparent 34%),
-    linear-gradient(180deg, #f8fbff 0%, #edf4ff 48%, #f8fbff 100%);
+    radial-gradient(circle at 18% 14%, rgba(41, 216, 255, 0.16), transparent 32%),
+    radial-gradient(circle at 82% 4%, rgba(63, 121, 255, 0.23), transparent 34%),
+    linear-gradient(180deg, #050d1c 0%, #0a1530 52%, #050d1c 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: radial-gradient(circle at 50% 22%, black 20%, transparent 80%);
 }
 
 a {
@@ -60,20 +73,20 @@ a {
 }
 
 .background-orb-one {
-  top: 80px;
+  top: 110px;
   left: -100px;
-  height: 280px;
-  width: 280px;
-  background: radial-gradient(circle, rgba(17, 169, 226, 0.32) 0%, rgba(17, 169, 226, 0) 72%);
+  height: 340px;
+  width: 340px;
+  background: radial-gradient(circle, rgba(41, 216, 255, 0.28) 0%, rgba(17, 169, 226, 0) 72%);
   animation: float-slow 10s ease-in-out infinite;
 }
 
 .background-orb-two {
-  top: 420px;
+  top: 480px;
   right: -160px;
-  height: 340px;
-  width: 340px;
-  background: radial-gradient(circle, rgba(11, 61, 145, 0.25) 0%, rgba(11, 61, 145, 0) 72%);
+  height: 400px;
+  width: 400px;
+  background: radial-gradient(circle, rgba(52, 95, 255, 0.3) 0%, rgba(11, 61, 145, 0) 72%);
   animation: float-slow 13s ease-in-out infinite reverse;
 }
 

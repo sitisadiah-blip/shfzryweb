@@ -1,18 +1,19 @@
 import {
   advantagesSectionContent,
-  companyInfoSectionContent,
+  brandAsset,
   companyProfile,
   contactInfo,
   footerContent,
   heroContent,
   navigationItems,
+  showcaseSectionContent,
   servicesSectionContent,
   serviceGroups,
 } from "@/content/company";
 import { AdvantagesSection } from "@/components/advantages-section";
-import { CompanyInfoSection } from "@/components/company-info-section";
 import { ContactSection } from "@/components/contact-section";
 import { HeroSection } from "@/components/hero-section";
+import { ShowcaseSection } from "@/components/showcase-section";
 import { ServicesSection } from "@/components/services-section";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
@@ -25,6 +26,8 @@ export default function Home() {
 
       <SiteNav
         brand={companyProfile.shortName}
+        logoSrc={brandAsset.logoLight}
+        logoAlt={brandAsset.alt}
         items={navigationItems}
         actionLabel={heroContent.primaryActionLabel}
         actionHref={heroContent.primaryActionHref}
@@ -32,13 +35,18 @@ export default function Home() {
 
       <main className="relative z-10">
         <HeroSection content={heroContent} profile={companyProfile} />
-        <CompanyInfoSection content={companyInfoSectionContent} />
+        <ShowcaseSection content={showcaseSectionContent} />
         <ServicesSection content={servicesSectionContent} groups={serviceGroups} />
         <AdvantagesSection content={advantagesSectionContent} />
         <ContactSection content={contactInfo} />
       </main>
 
-      <SiteFooter content={footerContent} />
+      <SiteFooter
+        content={footerContent}
+        logoSrc={brandAsset.logoLight}
+        logoAlt={brandAsset.alt}
+        brand={brandAsset.wordmark}
+      />
     </div>
   );
 }

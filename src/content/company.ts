@@ -13,6 +13,13 @@ export interface CompanyProfile {
   registeredAddress: string;
 }
 
+export interface BrandAsset {
+  logoLight: string;
+  logoDark: string;
+  alt: string;
+  wordmark: string;
+}
+
 export interface ServiceGroup {
   title: string;
   summary: string;
@@ -28,13 +35,11 @@ export interface ContactInfo {
   emailLabel: string;
   regionLabel: string;
   addressLabel: string;
-  hoursLabel: string;
   contactPerson: string;
   phone: string;
   email: string;
   region: string;
   address: string;
-  officeHours: string;
 }
 
 export interface SiteMeta {
@@ -66,7 +71,23 @@ export interface HeroContent {
   primaryActionHref: string;
   secondaryActionLabel: string;
   secondaryActionHref: string;
+  heroImage: string;
+  heroImageAlt: string;
   facts: HeroFact[];
+}
+
+export interface ShowcaseItem {
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+}
+
+export interface ShowcaseSectionContent {
+  sectionLabel: string;
+  title: string;
+  description: string;
+  items: ShowcaseItem[];
 }
 
 export interface CompanyInfoItem {
@@ -110,6 +131,41 @@ export interface FooterContent {
   compliance: string;
 }
 
+export interface CaseStudyItem {
+  id: string;
+  title: string;
+  scenario: string;
+  customerType: string;
+  image: string;
+  description: string;
+  tags: string[];
+}
+
+export interface RentalCaseGroup {
+  title: string;
+  description: string;
+  items: CaseStudyItem[];
+}
+
+export interface RentalSectionContent {
+  sectionLabel: string;
+  title: string;
+  description: string;
+  shortTerm: RentalCaseGroup;
+  longTerm: RentalCaseGroup;
+  ctaLabel: string;
+  ctaHref: string;
+  legalNote: string;
+}
+
+export interface RentalVideo {
+  title: string;
+  description: string;
+  src: string;
+  poster: string;
+  note: string;
+}
+
 export const siteMeta: SiteMeta = {
   siteName: "上海法智瑞云科技服务有限公司",
   title: "上海法智瑞云科技服务有限公司 | 具身智能与机器人解决方案",
@@ -118,14 +174,20 @@ export const siteMeta: SiteMeta = {
   keywords: [
     "上海法智瑞云科技服务有限公司",
     "具身智能",
-    "机器人应用",
+    "机器人租赁",
+    "会展机器人",
+    "企业接待机器人",
     "智能机器人",
-    "边云协同",
-    "多模态感知",
-    "工业智能化",
   ],
   siteUrl: "https://shfzry.com",
   ogImage: "/og-cover.svg",
+};
+
+export const brandAsset: BrandAsset = {
+  logoLight: "/brand/logo.svg",
+  logoDark: "/brand/logo.svg",
+  alt: "法智瑞云Logo",
+  wordmark: "法智瑞云",
 };
 
 export const companyProfile: CompanyProfile = {
@@ -141,32 +203,69 @@ export const companyProfile: CompanyProfile = {
   companyType: "有限责任公司（自然人独资）",
   businessTerm: "2025-11-26 至 无固定期限",
   region: "上海市嘉定区",
-  registeredAddress: "上海市嘉定区（以工商登记信息为准）",
+  registeredAddress: "上海市嘉定区新城路500号J",
 };
 
 export const navigationItems: NavigationItem[] = [
   { label: "公司简介", href: "#intro" },
-  { label: "工商信息", href: "#company-info" },
+  { label: "应用场景", href: "#showcase" },
   { label: "具身智能方案", href: "#services" },
   { label: "核心能力", href: "#advantages" },
+  { label: "租赁案例", href: "/cases" },
   { label: "联系方式", href: "#contact" },
 ];
 
+export const caseNavigationItems: NavigationItem[] = [
+  { label: "返回首页", href: "/" },
+  { label: "短租案例", href: "#short-term" },
+  { label: "长租案例", href: "#long-term" },
+  { label: "联系方式", href: "/#contact" },
+];
+
 export const heroContent: HeroContent = {
-  badge: "具身智能企业官网",
+  badge: "Embodied Intelligence Studio",
   sectionLabel: "公司简介",
   englishNameLabel: "英文名称",
   title: "上海法智瑞云科技服务有限公司",
   subtitle:
-    "以具身智能为核心，打造覆盖机器人感知、任务规划、执行控制与场景落地的一体化能力。",
-  primaryActionLabel: "联系我们",
+    "专注具身智能系统设计与场景落地，打通“感知 - 决策 - 执行”全栈链路，帮助企业在真实业务环境中稳定部署机器人能力。",
+  primaryActionLabel: "预约沟通",
   primaryActionHref: "#contact",
-  secondaryActionLabel: "查看具身智能方案",
-  secondaryActionHref: "#services",
+  secondaryActionLabel: "查看租赁案例",
+  secondaryActionHref: "/cases",
+  heroImage: "/home/showcase-robot-01.jpg",
+  heroImageAlt: "机器人应用场景",
   facts: [
     { label: "核心方向", value: "具身智能系统与机器人应用" },
-    { label: "交付模式", value: "算法 + 平台 + 场景集成" },
-    { label: "服务区域", value: "以上海为核心，面向全国合作" },
+    { label: "技术栈", value: "感知算法 + 任务规划 + 控制执行" },
+    { label: "交付模式", value: "工程化实施 + 场景联调 + 持续迭代" },
+  ],
+};
+
+export const showcaseSectionContent: ShowcaseSectionContent = {
+  sectionLabel: "应用场景",
+  title: "让机器人在真实业务里创造价值",
+  description:
+    "围绕巡检、导览与运营支持，我们将算法能力映射到具体流程，确保项目可部署、可度量、可持续优化。",
+  items: [
+    {
+      title: "机器人巡检",
+      subtitle: "工业与园区",
+      description: "在复杂环境中完成自动巡检、异常上报与任务闭环，提升运维效率。",
+      image: "/home/showcase-robot-01.jpg",
+    },
+    {
+      title: "机器人导览",
+      subtitle: "商业与会展",
+      description: "在展会、门店和园区场景提供接待导览与互动服务，增强现场体验。",
+      image: "/home/showcase-robot-02.jpg",
+    },
+    {
+      title: "运营支持",
+      subtitle: "活动与服务",
+      description: "结合任务编排能力，支持活动现场执行与服务流程标准化落地。",
+      image: "/home/showcase-robot-03.jpg",
+    },
   ],
 };
 
@@ -304,16 +403,110 @@ export const contactInfo: ContactInfo = {
   emailLabel: "联系邮箱",
   regionLabel: "办公地区",
   addressLabel: "办公地址",
-  hoursLabel: "服务时间",
-  contactPerson: "刘晓燕",
+  contactPerson: "刘女士",
   phone: "18638282007",
   email: "shfzry@163.com",
   region: "上海市嘉定区",
-  address: "上海市嘉定区（上线前补充详细门牌）",
-  officeHours: "周一至周五 09:00 - 18:00",
+  address: "上海市嘉定区新城路500号J",
+};
+
+export const rentalCasesShortTerm: CaseStudyItem[] = [
+  {
+    id: "short-01",
+    title: "新春会展互动短租",
+    scenario: "会展活动 / 节庆互动",
+    customerType: "短期租赁",
+    image: "/cases/short-01.jpg",
+    description:
+      "在活动现场完成迎宾、互动和定点展示，帮助主办方快速提升现场关注度与打卡传播。",
+    tags: ["1-3天快速部署", "活动导流", "现场互动"],
+  },
+  {
+    id: "short-02",
+    title: "酒店会务迎宾短租",
+    scenario: "酒店会务 / 品牌发布",
+    customerType: "短期租赁",
+    image: "/cases/short-02.jpg",
+    description:
+      "针对会议与发布会场景提供机器人迎宾与导览能力，缩短活动准备周期并提升专业感。",
+    tags: ["即租即用", "迎宾讲解", "低人力投入"],
+  },
+  {
+    id: "short-03",
+    title: "商演快闪机器人秀",
+    scenario: "商场快闪 / 品牌活动",
+    customerType: "短期租赁",
+    image: "/cases/short-03.jpg",
+    description:
+      "结合节庆主题进行机器人动作展示与互动引导，增强活动记忆点与社交传播效果。",
+    tags: ["快闪活动", "品牌曝光", "可定制脚本"],
+  },
+];
+
+export const rentalCasesLongTerm: CaseStudyItem[] = [
+  {
+    id: "long-01",
+    title: "直播场景常驻租赁",
+    scenario: "直播间 / 电商运营",
+    customerType: "长期租赁",
+    image: "/cases/long-01.jpg",
+    description:
+      "在固定场地长期部署机器人，承担展示、互动和品牌记忆点塑造，提升运营稳定性。",
+    tags: ["月度租赁", "驻场服务", "运维支持"],
+  },
+  {
+    id: "long-02",
+    title: "门店导览常态化部署",
+    scenario: "门店接待 / 空间导览",
+    customerType: "长期租赁",
+    image: "/cases/long-02.jpg",
+    description:
+      "为线下门店提供常态化机器人导览与引导服务，配合日常运营形成稳定转化触点。",
+    tags: ["长期运营", "服务标准化", "品牌形象提升"],
+  },
+  {
+    id: "long-03",
+    title: "园区接待长期合作",
+    scenario: "园区大厅 / 企业接待",
+    customerType: "长期租赁",
+    image: "/cases/long-03.jpg",
+    description:
+      "在园区与企业前台场景承担访客接待和基础咨询任务，持续优化现场服务体验。",
+    tags: ["长期合作", "接待咨询", "可持续迭代"],
+  },
+];
+
+export const rentalSectionContent: RentalSectionContent = {
+  sectionLabel: "机器人租赁案例",
+  title: "短租与长租双模式，覆盖多行业现场需求",
+  description:
+    "围绕活动执行和企业常驻两类核心需求，我们提供可快速交付的机器人租赁服务与运维支持。",
+  shortTerm: {
+    title: "短租案例",
+    description: "适用于会展、商演、发布会、快闪活动等短周期项目。",
+    items: rentalCasesShortTerm,
+  },
+  longTerm: {
+    title: "长租案例",
+    description: "适用于门店、园区、企业接待等长期运营场景。",
+    items: rentalCasesLongTerm,
+  },
+  ctaLabel: "立即咨询租赁方案",
+  ctaHref: "/#contact",
+  legalNote:
+    "当前案例图片为阶段性展示素材（含拍摄水印），后续将替换为官方无水印版本。",
+};
+
+export const rentalVideo: RentalVideo = {
+  title: "机器人租赁现场视频",
+  description:
+    "展示机器人在活动场景中的执行状态与互动表现，便于快速评估租赁落地效果。",
+  src: "/cases/rental-demo.mp4",
+  poster: "/cases/short-03.jpg",
+  note: "建议在 Wi-Fi 环境下播放；若首屏加载较慢可稍后重试。",
 };
 
 export const footerContent: FooterContent = {
   copyright: `© ${new Date().getFullYear()} 上海法智瑞云科技服务有限公司 版权所有`,
-  compliance: "本网站信息仅用于企业展示，不构成对外承诺，最终内容以正式文件为准。",
+  compliance: "本网站信息仅用于企业展示，不构成对外承诺，最终内容以正式合同为准。",
 };
